@@ -1,2 +1,5 @@
 rootProject.name = "GradlePluginSample"
 include ':app'
+include ':mylibrary'
+
+println("hi settings.gradle")

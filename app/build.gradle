@@ -1,5 +1,7 @@
+
 plugins {
     id 'com.android.application'
+    //使用插件
     id 'com.a.first'
 }
 
@@ -12,8 +14,6 @@ android {
         targetSdk 31
         versionCode 1
         versionName "1.0"
-
-        testInstrumentationRunner "androidx.test.runner.AndroidJUnitRunner"
     }
 
     buildTypes {
@@ -26,13 +26,6 @@ android {
         sourceCompatibility JavaVersion.VERSION_1_8
         targetCompatibility JavaVersion.VERSION_1_8
     }
-//    flavorDimensionList 'size'
-//    small{
-//        dimension '1'
-//    }
-//    big{
-//        dimension '2'
-//    }
 }
 
 dependencies {
@@ -45,10 +38,27 @@ dependencies {
     androidTestImplementation 'androidx.test.espresso:espresso-core:3.4.0'
 }
 
+println("hi app build.gradle")
+
+
 task "a" {
 
     println " task a in Configure "
     doLast {
         println "last"
     }
+    dependsOn ":app:assembleDebug"
 }
+
+class GreetingPlugin implements Plugin<Project> {
+    void apply(Project project) {
+        project.task('ahello') {
+            doLast {
+                println 'Hello from the GreetingPlugin'
+            }
+        }
+    }
+}
+
+// Apply the plugin
+apply plugin: GreetingPlugin

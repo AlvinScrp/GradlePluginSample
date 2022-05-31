@@ -9,13 +9,13 @@ repositories {
 }
 dependencies {
     implementation gradleApi() //gradle sdk
-    implementation localGroovy() //groovy sdk
     implementation 'com.android.tools.build:gradle:7.2.1'
 
 }
 
 gradlePlugin {
     plugins {
+        //定义插件,原先是通过resource文件配置
         firstPlugin {
             id = 'com.a.first'
             implementationClass = 'com.a.plugin.FirstPlugin'
